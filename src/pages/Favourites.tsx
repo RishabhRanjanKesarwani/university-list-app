@@ -1,6 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import debounce from 'lodash/debounce';
-import { AlertColor, Button, Card, CardContent, Paper, Snackbar, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TextField, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { AlertColor, Button, Card, CardContent, Container, Paper, Snackbar, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material';
 import Alert from '../components/Alert';
 import { favouriteStorage, getFromStorage, setIntoStorage } from '../utils/storage';
 import { useNavigate } from "react-router-dom";
@@ -94,6 +93,8 @@ const sortByNameAndCountry = (arr: University[]) => {
   return sortedArray;
 }
 
+const image = 'https://us.123rf.com/450wm/r4yhan/r4yhan2203/r4yhan220300272/183978570-no-data-empty-data-concept-illustration-vector.jpg';
+
 const List = () => {
   const [universities, setUniversities] = useState<University[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -155,10 +156,16 @@ const List = () => {
 
   const EmptyState = () => {
     return (
-      <>
-        <Typography variant="subtitle1" sx={{ width: '100%' }}>You have not added any favourites yet. Go to university list to add your favourites.</Typography>
-        <Button variant="contained" size="small" onClick={() => navigate('/list')}>University List</Button>
-      </>
+      <Container sx={{ paddingTop: '24px', paddingBottom: '24px' }} >
+        <Stack spacing={2} alignItems="center" justifyContent="center">
+          <img src={image} alt="Zero favourites image" width={500} />
+          <Typography variant="h3">You don&#39;t have any favourites!</Typography>
+          <Typography variant="subtitle1" sx={{ maxWidth: '450px' }}>You have not added any favourites yet. Go to university list to add your favourites.</Typography>
+          <Stack spacing={2} direction={{ xs: 'column', sm: 'row', md: 'row', lg: 'row' }} >
+            <Button variant="contained" size="small" onClick={() => navigate('/list')}>University List</Button>
+          </Stack>
+        </Stack>
+      </Container>
     )
   };
 

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import debounce from 'lodash/debounce';
-import { AlertColor, Button, Card, CardContent, Paper, Snackbar, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TextField, Typography } from '@mui/material';
+import { AlertColor, Button, Card, CardContent, Container, Paper, Snackbar, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TextField, Typography } from '@mui/material';
 import Alert from '../components/Alert';
 import { favouriteStorage, getFromStorage, setIntoStorage } from '../utils/storage';
 
@@ -95,6 +95,20 @@ const sortByNameAndCountry = (arr: University[]) => {
 
 const defaultCountry = 'India';
 
+const image = 'https://img.freepik.com/free-vector/no-data-illustration-concept_108061-573.jpg';
+
+const EmptyState = () => {
+  return (
+    <Container >
+      <Stack spacing={2} alignItems="center" justifyContent="center">
+        <img src={image} alt="Zero favourites image" width={300} />
+        <Typography variant="h3">No data found!</Typography>
+        <Typography variant="subtitle1" sx={{ maxWidth: '450px' }}>There is no data corresponding to the name and the country you entered above. Please change your inputs to try again.</Typography>
+      </Stack>
+    </Container>
+  )
+};
+
 const List = () => {
   const [uniName, setUniName] = useState<string>('');
   const [country, setCountry] = useState<string>(defaultCountry); // Set default country
@@ -184,53 +198,54 @@ const List = () => {
         </Stack>
         {isLoading ?
           <Typography variant="overline">Loading...</Typography> :
-          <Paper sx={{ width: '100%' }}>
-            <TableContainer sx={{ height: 550 }}>
-              <Table size="small">
-                <TableHead>
-                  <TableRow>
-                    {columns.map((column) => (
-                      <TableCell
-                        key={column.id}
-                        style={{ top: 57, width: column.width }}
-                      >
-                        <Typography variant="h6">{column.label}</Typography>
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {universities
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row) => {
-                      return (
-                        <TableRow role="checkbox" tabIndex={-1} key={row.name}>
-                          <TableCell>{row.name}</TableCell>
-                          <TableCell>{row.country}</TableCell>
-                          <TableCell>
-                            {row.domains.map(domain => (
-                              <Typography component="a" href={`https://${domain}`} target="_blank" key={domain}>{domain}</Typography>
-                            ))}
-                          </TableCell>
-                          <TableCell>
-                            <Button variant="outlined" onClick={() => addToFavourites(row)}>Add to favourites</Button>
-                          </TableCell>
-                        </TableRow>
-                      );
-                    })}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <TablePagination
-              rowsPerPageOptions={[10, 25, 100]}
-              component="div"
-              count={universities.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-          </Paper>
+          universities.length > 0 ?
+            (<Paper sx={{ width: '100%' }}>
+              <TableContainer sx={{ height: 550 }}>
+                <Table size="small">
+                  <TableHead>
+                    <TableRow>
+                      {columns.map((column) => (
+                        <TableCell
+                          key={column.id}
+                          style={{ top: 57, width: column.width }}
+                        >
+                          <Typography variant="h6">{column.label}</Typography>
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {universities
+                      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                      .map((row) => {
+                        return (
+                          <TableRow role="checkbox" tabIndex={-1} key={row.name}>
+                            <TableCell>{row.name}</TableCell>
+                            <TableCell>{row.country}</TableCell>
+                            <TableCell>
+                              {row.domains.map(domain => (
+                                <Typography component="a" href={`https://${domain}`} target="_blank" key={domain}>{domain}</Typography>
+                              ))}
+                            </TableCell>
+                            <TableCell>
+                              <Button variant="outlined" onClick={() => addToFavourites(row)}>Add to favourites</Button>
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+              <TablePagination
+                rowsPerPageOptions={[10, 25, 100]}
+                component="div"
+                count={universities.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </Paper>) : <EmptyState />
         }
       </CardContent>
       <Snackbar open={showToast} autoHideDuration={6000} onClose={handleClose}>

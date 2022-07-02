@@ -101,7 +101,7 @@ const Subscribe = () => {
           </Container>
         </Stack>
       </CardContent>
-      <Snackbar open={showToast} autoHideDuration={6000} onClose={handleClose}>
+      <Snackbar open={showToast} autoHideDuration={6000} onClose={handleClose} data-testid="subscribe-snackbar">
         <Alert onClose={handleClose} severity={emailToastMessages[subscribeStatus].severity} sx={{ width: '100%' }}>
           {emailToastMessages[subscribeStatus].message}
         </Alert>
