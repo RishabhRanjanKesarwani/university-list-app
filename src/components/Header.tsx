@@ -95,7 +95,7 @@ const Header = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.id} onClick={handleCloseNavMenu}>
+                <MenuItem key={page.id} onClick={handleCloseNavMenu} data-testid="menu-button">
                   <Typography textAlign="center" onClick={() => navigate(page.href)}>{page.name}</Typography>
                 </MenuItem>
               ))}
@@ -126,6 +126,7 @@ const Header = () => {
                 key={page.id}
                 onClick={() => navigate(page.href)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
+                data-testid="page-button"
               >
                 {page.name}
               </Button>

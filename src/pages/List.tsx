@@ -101,7 +101,7 @@ const EmptyState = () => {
   return (
     <Container >
       <Stack spacing={2} alignItems="center" justifyContent="center">
-        <img src={image} alt="Zero favourites image" width={300} />
+        <img src={image} alt="No data image" width={300} />
         <Typography variant="h3">No data found!</Typography>
         <Typography variant="subtitle1" sx={{ maxWidth: '450px' }}>There is no data corresponding to the name and the country you entered above. Please change your inputs to try again.</Typography>
       </Stack>
@@ -201,7 +201,7 @@ const List = () => {
           universities.length > 0 ?
             (<Paper sx={{ width: '100%' }}>
               <TableContainer sx={{ height: 550 }}>
-                <Table size="small">
+                <Table size="small" data-testid="list-table">
                   <TableHead>
                     <TableRow>
                       {columns.map((column) => (
