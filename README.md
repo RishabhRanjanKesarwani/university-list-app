@@ -15,7 +15,7 @@ Created by [Rishabh Ranjan Kesarwani](https://github.com/RishabhRanjanKesarwani)
 9. `Web storage` for persisting data
 10. `Create React App` for starting up the project
 
-## Features of the application
+## Components of the application
 
 ### Header
 A responsive header which contains routes for university-list, subscribe and favourites pages.\
@@ -38,7 +38,7 @@ When any of the inputs - name or country - change, the API is called. The API ca
 
 ### Subscribe Page
 Email is validated when submitted. For an invalid email, an error toast is rendered.\
-If an email is submitted, it is validated whether the email alreadt exists in the subscription list or not.\
+If an email is submitted, it is validated whether the email already exists in the subscription list or not.\
 If it exists, an info toast informing about the duplicacy is rendered. Otherwise, a success toast is rendered.\
 The emails which subscribed are stored in the web storage.\
 A list of subscribers is also visible in this page.
@@ -46,7 +46,7 @@ A list of subscribers is also visible in this page.
 ### Favourites Page
 The list of universities which were marked favourites is displayed.\
 The data is fetched from web storage.\
-If there is no fabourite university, an illustration to show the same is rendered.\
+If there is no favourite university, an illustration to show the same is rendered.\
 A button to remove a university from favourites is provided against every university. When clicked, the item is removed from the web storage.
 
 ### Page Not Found
@@ -57,7 +57,8 @@ It also contains CTAs to redirect to the popular routes - Home, List and Subscri
 ## What to expect in next release?
 
 1. A persistent database and to store information such as subscribed emails, favourite universities, user data, etc.
-2. Login/Logout.
+2. Or conversion of this project into a node project to support file operations (store data into file).
+3. Login/Logout.
 
 ## Steps to run in local
 
