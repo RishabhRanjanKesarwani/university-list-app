@@ -177,7 +177,7 @@ const List = () => {
           universities.length > 0 ? (
             <Paper sx={{ width: '100%' }}>
               <TableContainer sx={{ height: 550 }}>
-                <Table size="small">
+                <Table size="small" data-testid="favourites-table">
                   <TableHead>
                     <TableRow>
                       {columns.map((column) => (

@@ -29,7 +29,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:coverage": "npm test -- --coverage",
+    "test:coverage": "npm test -- --coverage --watchAll",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
