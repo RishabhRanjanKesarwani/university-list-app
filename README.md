@@ -30,15 +30,15 @@ Each card has `Learn more` CTA which redirects user to the corresponding route.
 Lists all the universities for the given name and/or country.\
 The list of universities is sorted - country-wise and then name-wise for every country.\
 Country input has default value `India`. Hence, the first list which appears on the page contains all the universities in India.\
-For an input resulting into an empty array, a component to indicate the same loads up.\
+For an input resulting into an empty array, an illustration to indicate that no data found for the given input loads up.\
 On clicking `add to favourites` button against any university, that university is added to the web storage. A success toast shows up informing the user that the action was completed.\
 If a user tries to add the same university to favourites more than once, an info toast appears to inform the same.\
-The page shows a loading component when until the list of universities is not recevied from the API.\
+The page shows a loading component until the list of universities is recevied from the API.\
 When any of the inputs - name or country - change, the API is called. The API call is debounced.
 
 ### Subscribe Page
 Email is validated when submitted. For an invalid email, an error toast is rendered.\
-If an email is submitted, it is validated whether the email exists or not.\
+If an email is submitted, it is validated whether the email alreadt exists in the subscription list or not.\
 If it exists, an info toast informing about the duplicacy is rendered. Otherwise, a success toast is rendered.\
 The emails which subscribed are stored in the web storage.\
 A list of subscribers is also visible in this page.
